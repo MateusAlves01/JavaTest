@@ -45,19 +45,17 @@ public class FreteServiceImpl implements FreteService {
         BigDecimal valorTotalFrete = BigDecimal.ZERO;
         BigDecimal valorTotalFreteDesconto = BigDecimal.ZERO;
 
-        if (enderecoOrigem.getDdd().equals(enderecoDestino.getDdd())
-                && enderecoOrigem.getLocalidade().equals(enderecoDestino.getLocalidade())) {
+        if (enderecoOrigem.getDdd().equals(enderecoDestino.getDdd())) {
             valorTotalFrete = freteRequest.getPeso().multiply(PRECO_KG);
-            BigDecimal valorDesconto = valorTotalFrete.multiply(DESCONTO_SETENTA_CINCO);
+            BigDecimal valorDesconto = valorTotalFrete.multiply(DESCONTO_CIQUENTA);
             valorTotalFreteDesconto = valorTotalFrete.subtract(valorDesconto);
             freteResponse.setVlTotalFrete(valorTotalFreteDesconto);
             freteResponse.setDataPrevistaEntrega(LocalDate.now().plusDays(3));
         }
 
-        if (enderecoOrigem.getUf().equals(enderecoDestino.getUf())
-                && !enderecoOrigem.getLocalidade().equals(enderecoDestino.getLocalidade())) {
+        if (enderecoOrigem.getUf().equals(enderecoDestino.getUf())) {
             valorTotalFrete = freteRequest.getPeso().multiply(PRECO_KG);
-            BigDecimal valorDesconto = valorTotalFrete.multiply(DESCONTO_CIQUENTA);
+            BigDecimal valorDesconto = valorTotalFrete.multiply(DESCONTO_SETENTA_CINCO);
             valorTotalFreteDesconto = valorTotalFrete.subtract(valorDesconto);
             freteResponse.setVlTotalFrete(valorTotalFreteDesconto);
             freteResponse.setDataPrevistaEntrega(LocalDate.now().plusDays(1));
