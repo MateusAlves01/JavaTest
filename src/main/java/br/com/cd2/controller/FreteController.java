@@ -5,6 +5,7 @@ import br.com.cd2.response.FreteResponse;
 import br.com.cd2.service.FreteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +21,14 @@ public class FreteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public FreteResponse calcularFrete(@RequestBody FreteRequest freteRequest){
-       return freteService.calcularFrete(freteRequest);
+    public FreteResponse calcularFrete(@RequestBody FreteRequest freteRequest) {
+        return freteService.calcularFrete(freteRequest);
     }
 
+//    @GetMapping
+//    @ResponseStatus(HttpStatus.OK)
+//    public FreteResponse getFrete() {
+//        return freteService.getFrete();
+//
+//    }
 }
