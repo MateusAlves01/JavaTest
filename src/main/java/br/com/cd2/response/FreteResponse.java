@@ -1,7 +1,5 @@
 package br.com.cd2.response;
 
-import br.com.cd2.entity.Frete;
-import br.com.cd2.request.FreteRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

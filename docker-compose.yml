@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: axlmxx/frete:1.0
+    ports:
+      - 8080:8080
+    networks:
+      - frete-network
+
+networks:
+  frete-network:
+    driver: bridge

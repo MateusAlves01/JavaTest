@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,20 +26,18 @@ public class FreteServiceImpl implements FreteService {
 
     @Override
     public FreteResponse calcularFrete(FreteRequest freteRequest) {
-        final EnderecoResponse enderecoOrigem = enderecoClient.getEndereco(freteRequest.getCepOrigem());
-        final EnderecoResponse enderecoDestino = enderecoClient.getEndereco(freteRequest.getCepDestino());
+        EnderecoResponse enderecoOrigem = enderecoClient.getEndereco(freteRequest.getCepOrigem());
+        EnderecoResponse enderecoDestino = enderecoClient.getEndereco(freteRequest.getCepDestino());
 
         FreteResponse freteResponse = new FreteResponse();
         freteResponse.setCepDestino(freteRequest.getCepDestino());
         freteResponse.setCepOrigem(freteRequest.getCepOrigem());
         calculoFrete(freteRequest, enderecoOrigem, enderecoDestino, freteResponse);
         salvaFrete(freteRequest, freteResponse);
-        //TODO Adicionar Swagger & commit
-        //TODO Adicionar Teste
-        //TODO Validações ,
 
         return freteResponse;
     }
+
     private static void calculoFrete(FreteRequest freteRequest, EnderecoResponse enderecoOrigem, EnderecoResponse enderecoDestino, FreteResponse freteResponse) {
         BigDecimal valorTotalFrete = BigDecimal.ZERO;
         BigDecimal valorTotalFreteDesconto = BigDecimal.ZERO;
@@ -79,6 +76,5 @@ public class FreteServiceImpl implements FreteService {
         frete.setNomeDestinatario(freteRequest.getNomeDestinatario());
         freteRepository.save(frete);
     }
-
 
 }

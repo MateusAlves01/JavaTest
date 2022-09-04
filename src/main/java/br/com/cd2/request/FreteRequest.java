@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Getter
@@ -15,9 +17,16 @@ import java.math.BigDecimal;
 @Builder
 public class FreteRequest {
 
-     private BigDecimal peso;
-     private String cepOrigem;
-     private String cepDestino;
-     private String nomeDestinatario;
+    @NotNull
+    private BigDecimal peso;
+
+    @NotBlank
+    private String cepOrigem;
+
+    @NotBlank(message = "Campo cep destino obrigatório.")
+    private String cepDestino;
+
+    @NotBlank(message = "Campo nome destinatario obrigatório.")
+    private String nomeDestinatario;
 
 }

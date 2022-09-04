@@ -1,7 +1,7 @@
 package br.com.cd2.repository;
 
 import br.com.cd2.entity.Frete;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface FreteRepository  extends JpaRepository<Frete, Long> {
+public interface FreteRepository  extends CrudRepository<Frete, Long> {
 }
